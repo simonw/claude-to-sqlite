@@ -1,0 +1,28 @@
+[project]
+name = "claude-to-sqlite"
+version = "0.1"
+description = "Convert a Claude.ai export to SQLite"
+readme = "README.md"
+authors = [{name = "Simon Willison"}]
+license = {text = "Apache-2.0"}
+requires-python = ">=3.8"
+classifiers = [
+    "License :: OSI Approved :: Apache Software License"
+]
+dependencies = [
+    "click",
+    "sqlite-utils",
+    "cogapp"
+]
+
+[project.urls]
+Homepage = "https://github.com/simonw/claude-to-sqlite"
+Changelog = "https://github.com/simonw/claude-to-sqlite/releases"
+Issues = "https://github.com/simonw/claude-to-sqlite/issues"
+CI = "https://github.com/simonw/claude-to-sqlite/actions"
+
+[project.scripts]
+claude-to-sqlite = "claude_to_sqlite.cli:cli"
+
+[project.optional-dependencies]
+test = ["pytest"]

@@ -1,0 +1,29 @@
+[
+    {
+        "uuid": "1db4c66e-b369-4e3a-96a9-6c16f8301ee8",
+        "name": "Bash Command for OpenAI API",
+        "created_at": "2024-10-18T05:30:10.325754Z",
+        "updated_at": "2024-10-18T05:30:22.223181Z",
+        "account": {"uuid": "2a0434bc-651f-407a-bc74-bdc295dc009b"},
+        "chat_messages": [
+            {
+                "uuid": "22b34c9c-69c1-46ad-87da-71570a70f107",
+                "text": "Turn this into a bash command",
+                "sender": "human",
+                "created_at": "2024-10-18T05:30:20.458713Z",
+                "updated_at": "2024-10-18T05:30:20.458713Z",
+                "attachments": [],
+                "files": [{"file_name": "CleanShot 20241017 at 22.29.542x.png"}]
+            },
+            {
+                "uuid": "12c87835-a63c-430e-a090-bd70d9efb601",
+                "text": " To turn this into a bash command, we need to modify the JSON structure slightly to make it compatible with bash syntax...",
+                "sender": "assistant",
+                "created_at": "2024-10-18T05:30:20.458713Z",
+                "updated_at": "2024-10-18T05:30:20.458713Z",
+                "attachments": [],
+                "files": []
+            }
+        ]
+    }
+]
