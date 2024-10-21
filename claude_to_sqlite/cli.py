@@ -62,22 +62,21 @@ def cli(export_path, db_path):
                         replace=True,
                     )
 
+thinking_re = r"<antThinking>(.*?)</antThinking>"
+artifact_re = r"<antArtifact\s+(.*?)>(.*?)</antArtifact>"
+attr_re = r'(\w+)="([^"]*)"'
+
 
 def extract_artifacts(
     text: str, conversation_id: str, message_id: str, versions: dict
 ) -> List[Dict[str, str]]:
-    # Regular expression patterns
-    thinking_pattern = r"<antThinking>(.*?)</antThinking>"
-    artifact_pattern = r"<antArtifact\s+(.*?)>(.*?)</antArtifact>"
-    attr_pattern = r'(\w+)="([^"]*)"'
-
     # Find all artifacts and thinking tags with their positions
     artifacts = [
         (m.start(), m.group(1), m.group(2))
-        for m in re.finditer(artifact_pattern, text, re.DOTALL)
+        for m in re.finditer(artifact_re, text, re.DOTALL)
     ]
     thinking_tags = [
-        (m.start(), m.group(1)) for m in re.finditer(thinking_pattern, text, re.DOTALL)
+        (m.start(), m.group(1)) for m in re.finditer(thinking_re, text, re.DOTALL)
     ]
 
     # Combine and sort all tags by their position in the text
@@ -94,7 +93,7 @@ def extract_artifacts(
             current_thinking = attr_or_content.strip()
         elif tag_type == "artifact":
             # Parse attributes
-            attributes = dict(re.findall(attr_pattern, attr_or_content))
+            attributes = dict(re.findall(attr_re, attr_or_content))
 
             identifier = attributes.get("identifier", "")
             artifact_id = f"{conversation_id}-{identifier}"
