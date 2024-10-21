@@ -41,7 +41,7 @@ from claude_to_sqlite import cli
 tmpdir = pathlib.Path(tempfile.mkdtemp())
 db_path = str(tmpdir / "claude.db")
 runner = CliRunner()
-result = runner.invoke(cli.cli, ["tests/example.json", db_path])
+runner.invoke(cli.cli, ["tests/artifacts.json", db_path])
 cog.out("```sql\n")
 schema = sqlite_utils.Database(db_path).schema
 cog.out(schema)
@@ -64,6 +64,19 @@ CREATE TABLE [messages] (
    [attachments] TEXT,
    [files] TEXT,
    [conversation_id] TEXT REFERENCES [conversations]([uuid])
+);
+CREATE TABLE [artifacts] (
+   [id] TEXT PRIMARY KEY,
+   [artifact] TEXT,
+   [identifier] TEXT,
+   [version] INTEGER,
+   [type] TEXT,
+   [language] TEXT,
+   [title] TEXT,
+   [content] TEXT,
+   [thinking] TEXT,
+   [conversation_id] TEXT REFERENCES [conversations]([uuid]),
+   [message_id] TEXT REFERENCES [messages]([uuid])
 );
 ```
 <!-- [[[end]]] -->
